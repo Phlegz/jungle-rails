@@ -21,6 +21,8 @@ end
 
 # Let's do this ...
 
+
+
 ## CATEGORIES
 
 puts "Finding or Creating Categories ..."
@@ -35,7 +37,7 @@ puts "Re-creating Products ..."
 
 Product.destroy_all
 
-cat1.products.create!({
+classy_shirt = cat1.products.create!({
   name:  'Men\'s Classy shirt',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel1.jpg'),
@@ -43,21 +45,39 @@ cat1.products.create!({
   price: 64.99
 })
 
-cat1.products.create!({
-  name:  'Women\'s Zebra pants',
-  description: Faker::Hipster.paragraph(4),
-  image: open_asset('apparel2.jpg'),
-  quantity: 18,
-  price: 124.99
-})
+classy_shirt.review.create!({
+    description: "it is crap",
+    rating: 1,
+    user_id: 1,
+  })
 
-cat1.products.create!({
+zebra_pant = cat1.products.create!({
+    name:  'Women\'s Zebra pants',
+    description: Faker::Hipster.paragraph(4),
+    image: open_asset('apparel2.jpg'),
+    quantity: 18,
+    price: 124.99
+  })
+
+zebra_pant.review.create!({
+    description: "it is awesome",
+    rating: 5,
+    user_id: 2,
+  })
+
+hipster_hat = cat1.products.create!({
   name:  'Hipster Hat',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel3.jpg'),
   quantity: 4,
   price: 34.49
 })
+
+hipster_hat.review.create!({
+    description: "Not bad",
+    rating: 5,
+    user_id: 2,
+  })
 
 cat1.products.create!({
   name:  'Hipster Socks',
@@ -131,6 +151,5 @@ cat3.products.create!({
   quantity: 0,
   price: 2_483.75
 })
-
 
 puts "DONE!"
