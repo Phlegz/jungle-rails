@@ -1,0 +1,8 @@
+<p>
+  <br>
+  <img src= "<%= Product.where("id=#{lineitem.product_id}")[0].image %>" >
+  <p>Item: <%= Product.where("id=#{lineitem.product_id}")[0].name %></p>
+  <p>description: <%= Product.where("id=#{lineitem.product_id}")[0].description %></p>
+  <p>quantity: <%= lineitem.quantity %></p>
+  <p>Price: $<%= lineitem.item_price_cents/100 %></p>
+</p>
