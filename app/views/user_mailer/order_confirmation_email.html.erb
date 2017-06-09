@@ -1,0 +1,16 @@
+<p>
+  You have successfully placed your order
+  Order summary for order number <%= @order.id %><br>
+
+  <% @order.line_items.each do |item| %>
+  <p>Item: <%=item.product.name %> </p>
+  <p>Quantity: <%= item.quantity%> </p>
+  <p>Item Price: <%= item.product.price%> </p>
+  <br>
+  <% end %>
+
+  <p>Total Paid:<%= @order.total_cents%></p>
+
+</p>
+
+<p>Thanks for your shopping!</p>
