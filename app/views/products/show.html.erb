@@ -30,21 +30,44 @@
 
 </section>
 
+<% if current_user %>
+  <%= form_for([@product, @new_review]) do |form| %>
+    <div class="field">
+      <%= form.label :rating %>
+      <%= form.select :rating, [[1],[2],[3],[4],[5]] %>
+
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+<% end %>
+
 <section>
-  <table>
-    <tr>
-      <th>
-        description
-      </th>
-      <th>
-        rating
-      </th>
-    </tr>
-    <% @review.each do |review|%>
-    <tr>
-      <td><%= review.description %></td>
-      <td><%= review.rating %></td>
-    </tr>
-    <% end %>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>description</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @review.each do |review|%>
+        <tr>
+          <td><%= review.description %></td>
+          <td><%= review.rating %></td>
+        </tr>
+        <% if current_user && current_user.id == review.user_id%>
+          <td>
+            <%= link_to fa_icon('trash'), [review.product, review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+
   </table>
+
 </section>
