@@ -1,5 +1,13 @@
 <article class="product">
 
+  <% sum = 0 %>
+  <% product.review.each do |a| %>
+  <% sum = sum + a.rating %>
+  <% end %>
+  <% if product.review.size != 0 %>
+    <p>average rating: <%= sum/product.review.size %> </p>
+  <% end %>
+  
   <% if product.quantity == 0 %>
     <aside class="sold-out">
       Sold out!
